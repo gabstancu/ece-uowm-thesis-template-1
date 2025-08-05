@@ -1,23 +1,26 @@
 \section{Τίτλος}
+Παράδειγμα αναφοράς: \cite{BALABANOVJIANG2012}.
 
 \begin{myalgorithm}{Όνομα αλγορίθμου - \en{Algorithm name}}{alg:conflict-res}
 \begin{algorithmic}[1]
-    \Require Implication graph and a conflict at the current decision level
-    \Ensure Learned clause and backjump level
-    \Function{analyze\_conflict}{}
-        \If{current\_decision\_level() == 0}
-            \State \Return $-1$
-        \EndIf
-        \State $cl \gets$ find\_conflicting\_clause()
-        \While{not stop\_criterion\_met($cl$)}
-            \State $lit \gets$ choose\_literal($cl$)
-            \State $var \gets$ variable\_of\_literal($lit$)
-            \State $ante \gets$ antecedent($var$)
-            \State $cl \gets$ resolve($cl$, $ante$, $var$)
-        \EndWhile
-        \State add\_clause\_to\_database($cl$)
-        \State $back\_dl \gets$ clause\_asserting\_level($cl$)
-        \State \Return $back\_dl$
-    \EndFunction
+    \en{
+        \Require Implication graph and a conflict at the current decision level
+        \Ensure Learned clause and backjump level
+        \Function{analyze\_conflict}{}
+            \If{current\_decision\_level() == 0}
+                \State \Return $-1$
+            \EndIf
+            \State $cl \gets$ find\_conflicting\_clause()
+            \While{not stop\_criterion\_met($cl$)}
+                \State $lit \gets$ choose\_literal($cl$)
+                \State $var \gets$ variable\_of\_literal($lit$)
+                \State $ante \gets$ antecedent($var$)
+                \State $cl \gets$ resolve($cl$, $ante$, $var$)
+            \EndWhile
+            \State add\_clause\_to\_database($cl$)
+            \State $back\_dl \gets$ clause\_asserting\_level($cl$)
+            \State \Return $back\_dl$
+        \EndFunction
+    }
     \end{algorithmic}
 \end{myalgorithm}
