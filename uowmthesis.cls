@@ -213,6 +213,7 @@
   \listoftables
 }
 
+
 \newcommand{\customlistofalgorithms}{%
   \cleardoublepage
   \chapterheading{}{\listalgorithmname}%
