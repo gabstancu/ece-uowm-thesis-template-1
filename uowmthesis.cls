@@ -9,7 +9,52 @@
 % ========== REQUIRED PACKAGES ==========
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,greek]{babel}
-\RequirePackage{lmodern}
+\RequirePackage[T1]{fontenc}
+
+% ========== LANGUAGE SETTINGS ==========
+\AtBeginDocument{%
+  \addto\captionsenglish{%
+    \renewcommand{\listalgorithmname}{List of Algorithms}%
+    \renewcommand{\algorithmname}{Algorithm}%
+    \renewcommand{\listfigurename}{List of Figures}%
+    \renewcommand{\listtablename}{List of Tables}%
+    \renewcommand{\listimagename}{List of Images}%
+    \renewcommand{\imagename}{Image}%
+    \renewcommand{\theoremname}{Theorem}%
+    \renewcommand{\lemmaname}{Lemma}%
+    \renewcommand{\definitionname}{Definition}%
+    \renewcommand{\corollaryname}{Corollary}%
+    \renewcommand{\propositionname}{Proposition}%
+    \renewcommand{\examplename}{Example}%
+    \renewcommand{\remarkname}{Observation}%
+  }
+
+  \addto\captionsgreek{%
+    \renewcommand{\listalgorithmname}{Κατάλογος Αλγορίθμων}%
+    \renewcommand{\algorithmname}{Αλγόριθμος}%
+    \renewcommand{\listfigurename}{Κατάλογος Σχημάτων}%
+    \renewcommand{\listtablename}{Κατάλογος Πινάκων}%
+    \renewcommand{\listimagename}{Κατάλογος Εικόνων}%
+    \renewcommand{\imagename}{Εικόνα}%
+    \renewcommand{\theoremname}{Θεώρημα}%
+    \renewcommand{\lemmaname}{Λήμα}%
+    \renewcommand{\definitionname}{Ορισμός}%
+    \renewcommand{\corollaryname}{Πόρισμα}%
+    \renewcommand{\propositionname}{Πρόταση}%
+    \renewcommand{\examplename}{Παράδειγμα}%
+    \renewcommand{\remarkname}{Παρατήρηση}%
+  }
+}
+
+% =========== fonts (more at https://tug.org/FontCatalogue/) =============
+% \RequirePackage{lmodern} % main font
+% \RequirePackage{mathptmx} % Times font + math support (legacy)
+% \RequirePackage{newtxtext,newtxmath} % Modern Times clone (recommended)
+% \RequirePackage{mathpazo} % Palatino + math support
+% \RequirePackage{helvet} % Helvetica
+% \RequirePackage{accanthis}
+\RequirePackage{libertinus}
+
 \RequirePackage{microtype}
 \RequirePackage{geometry}
 \RequirePackage{setspace}
@@ -75,10 +120,12 @@
 \newenvironment{myalgorithm}[2]{% #1 = title, #2 = label
     \refstepcounter{myalgorithm}%
     \addcontentsline{loa}{myalgorithm}{\protect\numberline{\themyalgorithm}{\ignorespaces #1}}%
+    % \addcontentsline{loa}{myalgorithm}{\protect\numberline{\themyalgorithm}{\texorpdfstring{#1}{#1}}}%
     \vspace{\baselineskip}%
     \hrule
-    \vspace{0.2em}%
-    \noindent\textbf{\foreignlanguage{english}{\algorithmname~\themyalgorithm\ -- #1}}%
+    \vspace{0.2em}
+    % \noindent{\textbf{\algorithmname}~\themyalgorithm~-- #1}%
+    \noindent{\textbf{\algorithmname~\themyalgorithm} -- #1}%
     \vspace{0.2em}%
     \hrule
     \label{#2}%
@@ -212,38 +259,6 @@
   \addcontentsline{toc}{chapter}{\appendixname~\thechapter: #1}%
 }
 
-% ========== LANGUAGE SETTINGS ==========
-\addto\captionsenglish{%
-  \renewcommand{\listalgorithmname}{List of Algorithms}%
-  \renewcommand{\algorithmname}{Algorithm}%
-  \renewcommand{\listfigurename}{List of Figures}%
-  \renewcommand{\listtablename}{List of Tables}%
-  \renewcommand{\listimagename}{List of Images}
-  \renewcommand{\imagename}{Image}%%
-  \renewcommand{\theoremname}{Theorem}%
-  \renewcommand{\lemmaname}{Lemma}%
-  \renewcommand{\definitionname}{Definition}%
-  \renewcommand{\corollaryname}{Corollary}%
-  \renewcommand{\propositionname}{Proposition}%
-  \renewcommand{\examplename}{Example}%
-  \renewcommand{\remarkname}{Observation}%
-}
-
-\addto\captionsgreek{%
-  \renewcommand{\listalgorithmname}{Κατάλογος Αλγορίθμων}%
-  \renewcommand{\algorithmname}{Αλγόριθμος}%
-  \renewcommand{\listfigurename}{Κατάλογος Σχημάτων}%
-  \renewcommand{\listtablename}{Κατάλογος Πινάκων}%
-  \renewcommand{\listimagename}{Κατάλογος Εικόνων}
-  \renewcommand{\imagename}{Εικόνα}%
-  \renewcommand{\theoremname}{Θεώρημα}%
-  \renewcommand{\lemmaname}{Λήμα}%
-  \renewcommand{\definitionname}{Ορισμός}%
-  \renewcommand{\corollaryname}{Πόρισμα}%
-  \renewcommand{\propositionname}{Πρόταση}%
-  \renewcommand{\examplename}{Παράδειγμα}%
-  \renewcommand{\remarkname}{Παρατήρηση}%
-}
 
 % ========== THEOREMS ==========
 \newtheorem{theorem}{\theoremname}[chapter]
