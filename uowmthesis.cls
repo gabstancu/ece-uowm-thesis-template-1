@@ -19,6 +19,7 @@
     \renewcommand{\listfigurename}{List of Figures}%
     \renewcommand{\listtablename}{List of Tables}%
     \renewcommand{\listimagename}{List of Images}%
+    \renewcommand{\acronymname}{Acronyms}%
     \renewcommand{\imagename}{Image}%
     \renewcommand{\theoremname}{Theorem}%
     \renewcommand{\lemmaname}{Lemma}%
@@ -35,6 +36,7 @@
     \renewcommand{\listfigurename}{Κατάλογος Σχημάτων}%
     \renewcommand{\listtablename}{Κατάλογος Πινάκων}%
     \renewcommand{\listimagename}{Κατάλογος Εικόνων}%
+    \renewcommand{\acronymname}{Ακρωνύμια}%
     \renewcommand{\imagename}{Εικόνα}%
     \renewcommand{\theoremname}{Θεώρημα}%
     \renewcommand{\lemmaname}{Λήμα}%
@@ -225,9 +227,23 @@
   \cleardoublepage
   \chapterheading{}{\listimagename}
   \begingroup
-    \let\chapter\section % avoid creating empty Chapter 0
+    \let\chapter\section
     \renewcommand{\listimagename}{}%
     \listof{image}{\listimagename}
+  \endgroup
+}
+
+
+\newcommand{\customlistofacronyms}{%
+  \cleardoublepage
+  \phantomsection
+  \chapterheading{}{\acronymname}%
+  % \addcontentsline{toc}{chapter}{\acronymname}%
+  % \setglossarystyle{nopages}%
+  \glsaddall%
+  \begingroup
+    \def\glossarysection[##1]##2{}%
+    \printglossary[type=\acronymtype, title={}]%
   \endgroup
 }
 
