@@ -1,0 +1,15 @@
+\section{Τίτλος}
+
+\begin{image}
+    \centering
+    \begin{tikzpicture}
+      \node[mybox] (start) {Έναρξη};
+      \node[mybox, right=2cm of start] (process) {Διαδικασία};
+      \node[mybox, below=1.5cm of process] (end) {Λήξη};
+    
+      \draw[myarrow] (start) -- (process);
+      \draw[myarrow] (process) -- (end);
+    \end{tikzpicture}
+    \caption{Σύντομη περιγραφή}
+    \label{img:test}
+\end{image}

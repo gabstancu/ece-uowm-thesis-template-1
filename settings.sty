@@ -1,0 +1,56 @@
+\newcommand{\tl}[1]{#1}
+
+
+% =================== ACRONYM LIST ===================
+\usepackage[acronym]{glossaries}
+\makeglossaries
+\newacronym{lp}{LP}{Linear Programming}
+
+
+
+
+
+% =================== SHORTCUTS ===================
+\newcommand{\gr}[1]{\selectlanguage{greek}#1\selectlanguage{english}}
+\newcommand{\en}[1]{\selectlanguage{english}#1\selectlanguage{greek}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+
+
+% =================== TIKZ SETUP ===================
+% Essential TikZ setup
+\usepackage{tikz}
+\usetikzlibrary{
+  arrows.meta,         % arrow heads
+  positioning,         % relative positioning of nodes
+  calc,                % coordinate calculations
+  shapes.geometric,    % common shapes like rectangle, diamond
+  decorations.pathmorphing, % fuzzy/zigzag lines
+  patterns,            % fill patterns
+  matrix               % matrix diagrams
+}
+
+% Common styles
+\tikzset{
+  every node/.style = {font=\small}, % global font
+  mybox/.style = {
+    draw, 
+    rounded corners, 
+    thick, 
+    fill=blue!10,
+    inner sep=8pt
+  },
+  myarrow/.style = {
+    ->, 
+    thick, 
+    draw=black!80
+  },
+  highlight/.style = {
+    fill=yellow!30,
+    rounded corners
+  },
+  point/.style = {
+    circle, fill=black, inner sep=1.5pt
+  }
+}
