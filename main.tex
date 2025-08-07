@@ -3,24 +3,30 @@
 
 \begin{document}
 
+
+% ========== keep you preffered covers ==========
 \include{covers/cover1/gr}
 \include{covers/cover1/en}
 
-\include{covers/cover2/gr}
-\include{covers/cover2/en}
+% \include{covers/cover2/gr}
+% \include{covers/cover2/en}
 
-\include{covers/cover3/en}
-\include{covers/cover3/gr}
+% \include{covers/cover3/en}
+% \include{covers/cover3/gr}
 
+% ============ copyrights ============
 \include{copyright-gr}
 \include{copyright-en}
-
 % -------- include pdf declaration (optional) --------
 % \includepdf[pages=-]{copyright_statement.pdf}
 
+
+% =========== abstract ===========
 \include{abstract-gr}
 \include{abstract-en}
 
+
+% ======== acknowledgements ==========
 \include{acknowledgements}
 
 
@@ -31,13 +37,14 @@
 \customlistoffigures
 \customlistofimages
 \customlistofalgorithms
-
 \customtableofcontents
 
-
+% ============= list of acronyms ==========
 \input{doc/acronyms}
 \customlistofacronyms
 
+
+% ============ main body of your thesis ============
 
 \chapter{Τίτλος κεφαλαίου}
 \input{doc/chapter1/part1}
@@ -49,9 +56,11 @@
 
 
 \appendix
-\appendixchapter{Τίτλος παραρτήματος}
+\appendixchapter{Κώδικας}
+\input{doc/appendices/code}
 
-\selectlanguage{english}
+
 \custombibliography
+% \printbibliography
 
 \end{document}

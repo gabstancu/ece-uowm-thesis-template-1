@@ -6,6 +6,8 @@
 % =================== SHORTCUTS ===================
 \newcommand{\gr}[1]{\selectlanguage{greek}#1\selectlanguage{english}}
 \newcommand{\en}[1]{\selectlanguage{english}#1\selectlanguage{greek}}
+\newcommand{\inlinegr}{\selectlanguage{greek}\relax}
+\newcommand{\inlineen}{\selectlanguage{english}\relax}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 
@@ -47,3 +49,24 @@
     circle, fill=black, inner sep=1.5pt
   }
 }
+
+
+
+% ============== CODE APPEARANCE ==============
+
+% ---- minted -----
+\usepackage{minted}
+
+\newenvironment{codeblock}[1]{%
+  \selectlanguage{english}
+  \minted[
+    fontsize=\small,
+    linenos=true,
+    breaklines,
+    frame=single,
+    framerule=0.05pt,
+    framesep=4mm,
+    bgcolor=white!5,
+    tabsize=2
+  ]{#1}%
+}{\endminted}

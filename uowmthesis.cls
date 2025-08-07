@@ -7,6 +7,7 @@
 \LoadClass[12pt,a4paper]{report}
 
 % ========== REQUIRED PACKAGES ==========
+\RequirePackage{settings}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,greek]{babel}
 \RequirePackage[T1]{fontenc}
@@ -260,12 +261,17 @@
     \vspace{-3cm}
     \titleformat{\chapter}[display]{\normalfont\Huge}{}{0pt}{}
     \renewcommand{\bibname}{}
-    \bibliographystyle{ieeetr}
-    \bibliography{references}
+
+    \begin{otherlanguage*}{english}
+      \bibliographystyle{ieeetr}
+      \bibliography{references} 
+    \end{otherlanguage*}
     \let\clearpage\origclearpage
   \endgroup
   \markboth{\bibname}{}
 }
+
+
 
 % ========== APPENDIX ==========
 \newcommand{\appendixchapter}[1]{%
