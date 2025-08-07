@@ -263,8 +263,8 @@
     \renewcommand{\bibname}{}
 
     \begin{otherlanguage*}{english}
-      \bibliographystyle{ieeetr}
-      \bibliography{references} 
+      \bibliographystyle{IEEEtran}
+      \bibliography{IEEEabrv,references} 
     \end{otherlanguage*}
     \let\clearpage\origclearpage
   \endgroup
