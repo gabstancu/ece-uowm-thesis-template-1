@@ -1,67 +1,94 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mythesis}[2023/11/15 Custom Thesis Class]
+\ProvidesClass{uowmthesis}[2023/11/15 Custom Thesis Class – bilingual fixed]
 
 % ========== CLASS OPTIONS ==========
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions\relax
 \LoadClass[12pt,a4paper]{report}
 
-% ========== REQUIRED PACKAGES ==========
+% ========== LANG + SETTINGS ==========
+\RequirePackage{polyglossia}
+\setmainlanguage{greek}
+\setotherlanguage{english}
+
 \RequirePackage{settings}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage[english,greek]{babel}
-\RequirePackage[T1]{fontenc}
 
-% ========== LANGUAGE SETTINGS ==========
+% ---- Caption names (override, bilingual) ----
 \AtBeginDocument{%
-  \addto\captionsenglish{%
-    \renewcommand{\listalgorithmname}{List of Algorithms}%
-    \renewcommand{\algorithmname}{Algorithm}%
-    \renewcommand{\listfigurename}{List of Figures}%
-    \renewcommand{\listtablename}{List of Tables}%
-    \renewcommand{\listimagename}{List of Images}%
-    \renewcommand{\acronymname}{Acronyms}%
-    \renewcommand{\imagename}{Image}%
-    \renewcommand{\theoremname}{Theorem}%
-    \renewcommand{\lemmaname}{Lemma}%
-    \renewcommand{\definitionname}{Definition}%
-    \renewcommand{\corollaryname}{Corollary}%
-    \renewcommand{\propositionname}{Proposition}%
-    \renewcommand{\examplename}{Example}%
-    \renewcommand{\remarkname}{Observation}%
-  }
-
-  \addto\captionsgreek{%
-    \renewcommand{\listalgorithmname}{Κατάλογος Αλγορίθμων}%
-    \renewcommand{\algorithmname}{Αλγόριθμος}%
-    \renewcommand{\listfigurename}{Κατάλογος Σχημάτων}%
-    \renewcommand{\listtablename}{Κατάλογος Πινάκων}%
-    \renewcommand{\listimagename}{Κατάλογος Εικόνων}%
-    \renewcommand{\acronymname}{Ακρωνύμια}%
-    \renewcommand{\imagename}{Εικόνα}%
-    \renewcommand{\theoremname}{Θεώρημα}%
-    \renewcommand{\lemmaname}{Λήμα}%
-    \renewcommand{\definitionname}{Ορισμός}%
-    \renewcommand{\corollaryname}{Πόρισμα}%
-    \renewcommand{\propositionname}{Πρόταση}%
-    \renewcommand{\examplename}{Παράδειγμα}%
-    \renewcommand{\remarkname}{Παρατήρηση}%
-  }
+    \addto\captionsenglish{%
+      \renewcommand{\chaptername}{Chapter}%
+      \renewcommand{\contentsname}{Contents}%
+      \renewcommand{\bibname}{Bibliography}%
+      \renewcommand{\appendixname}{Appendix}%
+      \renewcommand{\listalgorithmname}{List of Algorithms}%
+      \renewcommand{\algorithmname}{Algorithm}%
+      \renewcommand{\listfigurename}{List of Figures}%
+      \renewcommand{\listtablename}{List of Tables}%
+      \renewcommand{\listimagename}{List of Images}%
+      \renewcommand{\acronymname}{Acronyms}%
+      \renewcommand{\imagename}{Image}%
+      \renewcommand{\theoremname}{Theorem}%
+      \renewcommand{\lemmaname}{Lemma}%
+      \renewcommand{\definitionname}{Definition}%
+      \renewcommand{\corollaryname}{Corollary}%
+      \renewcommand{\propositionname}{Proposition}%
+      \renewcommand{\examplename}{Example}%
+      \renewcommand{\remarkname}{Remark}%
+    }
+    \addto\captionsgreek{%
+      \renewcommand{\chaptername}{Κεφάλαιο}%
+      \renewcommand{\contentsname}{Περιεχόμενα}%
+      \renewcommand{\bibname}{Βιβλιογραφία}%
+      \renewcommand{\appendixname}{Παράρτημα}%
+      \renewcommand{\listalgorithmname}{Κατάλογος Αλγορίθμων}%
+      \renewcommand{\algorithmname}{Αλγόριθμος}%
+      \renewcommand{\listfigurename}{Κατάλογος Σχημάτων}%
+      \renewcommand{\listtablename}{Κατάλογος Πινάκων}%
+      \renewcommand{\listimagename}{Κατάλογος Εικόνων}%
+      \renewcommand{\acronymname}{Ακρωνύμια}%
+      \renewcommand{\imagename}{Εικόνα}%
+      \renewcommand{\theoremname}{Θεώρημα}%
+      \renewcommand{\lemmaname}{Λήμα}%
+      \renewcommand{\definitionname}{Ορισμός}%
+      \renewcommand{\corollaryname}{Πόρισμα}%
+      \renewcommand{\propositionname}{Πρόταση}%
+      \renewcommand{\examplename}{Παράδειγμα}%
+      \renewcommand{\remarkname}{Παρατήρηση}%
+    }
 }
 
-% =========== fonts (more at https://tug.org/FontCatalogue/) =============
-% \RequirePackage{lmodern} % main font
-% \RequirePackage{mathptmx} % Times font + math support (legacy)
-% \RequirePackage{newtxtext,newtxmath} % Modern Times clone (recommended)
-% \RequirePackage{mathpazo} % Palatino + math support
-% \RequirePackage{helvet} % Helvetica
-% \RequirePackage{accanthis}
-\RequirePackage{libertinus}
 
+% ========= custom acronyms =========
+\newcommand{\acitem}[2]{\item[\hypertarget{acro:#1}{\textbf{#1}}] #2}
+\newcommand{\ac}[1]{\hyperlink{acro:#1}{#1}}
+
+% =========== FONTS / LAYOUT ===========
+\RequirePackage{XCharter}
 \RequirePackage{microtype}
 \RequirePackage{geometry}
+\geometry{a4paper,top=3.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm}
 \RequirePackage{setspace}
+\onehalfspacing
+\setlength{\parindent}{0pt}
+
+% ========== HEADERS/FOOTERS ==========
 \RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\leftmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad#1}{}}
+\renewcommand{\subsectionmark}[1]{}
+\fancypagestyle{noheaderstyle}{%
+  \fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}%
+}
+
+% ========== PKGS ==========
+\let\eth\relax
+\let\backepsilon\relax
 \RequirePackage{amsmath,amssymb,amsthm,mathtools}
 \RequirePackage{algpseudocode}
 \RequirePackage{titlesec}
@@ -72,98 +99,62 @@
 \RequirePackage{hyperref}
 \RequirePackage{caption}
 \RequirePackage{chngcntr}
-
 \RequirePackage{float}
+
+% ========== IMAGE FLOAT ==========
 \floatstyle{plain}
 \newfloat{image}{htbp}{loi}
 \floatname{image}{\imagename}
+\AtBeginEnvironment{image}{\vspace{\baselineskip}}
+\AtEndEnvironment{image}{\vspace{\baselineskip}}
+
+\makeatletter
+\newcommand{\listofmyimages}{%
+  \@starttoc{loi}%
+}
+\newcommand*\l@image{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
 
 % Section-based numbering for floats
 \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \renewcommand{\thetable}{\thechapter.\arabic{table}}
 \renewcommand{\theimage}{\thechapter.\arabic{image}}
-
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
 \counterwithin{image}{section}
 
-% ========== PAGE LAYOUT ==========
-\geometry{a4paper,top=3.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm}
-\onehalfspacing
-\setlength{\parindent}{0pt}
-
-% ========== HEADERS/FOOTERS ==========
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[R]{\leftmark}
-\fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad#1}{}}
-\renewcommand{\subsectionmark}[1]{}
-
-\fancypagestyle{noheaderstyle}{
-  \fancyhf{}
-  \fancyfoot[C]{\thepage}
-  \renewcommand{\headrulewidth}{0pt}
-}
-
-
 % ========== ALGORITHMS ==========
-% Algorithm counter
 \newcounter{myalgorithm}[chapter]
 \renewcommand{\themyalgorithm}{\thechapter.\arabic{myalgorithm}}
 
-% Provide default English label (override via \addto\captions...)
-\providecommand{\algorithmname}{Algorithm}
-
-% Custom algorithm environment
 \makeatletter
-\newenvironment{myalgorithm}[2]{% #1 = title, #2 = label
-    \refstepcounter{myalgorithm}%
-    \addcontentsline{loa}{myalgorithm}{\protect\numberline{\themyalgorithm}{\ignorespaces #1}}%
-    % \addcontentsline{loa}{myalgorithm}{\protect\numberline{\themyalgorithm}{\texorpdfstring{#1}{#1}}}%
-    \vspace{\baselineskip}%
-    \hrule
-    \vspace{0.2em}
-    % \noindent{\textbf{\algorithmname}~\themyalgorithm~-- #1}%
-    \noindent{\textbf{\algorithmname~\themyalgorithm} -- #1}%
-    \vspace{0.2em}%
-    \hrule
-    \label{#2}%
-    \vspace{0.3em}%
+\newenvironment{myalgorithm}[2]{% #1=title, #2=label
+  \refstepcounter{myalgorithm}%
+  \addcontentsline{loa}{myalgorithm}{\protect\numberline{\themyalgorithm}{\ignorespaces #1}}%
+  \vspace{\baselineskip}\hrule\vspace{0.2em}
+  \noindent{\textbf{\algorithmname~\themyalgorithm} -- #1}%
+  \vspace{0.2em}\hrule\label{#2}\vspace{0.3em}
 }{%
-    \vspace{0.3em}%
-    \hrule
-    \vspace{\baselineskip}%
+  \vspace{0.3em}\hrule\vspace{\baselineskip}
 }
-
-% List of Algorithms output
 \newcommand{\listofmyalgorithms}{%
-  \section*{\listalgorithmname}%
+  % \chapter*{\listalgorithmname}% heading uses current language
   \@starttoc{loa}%
 }
-
-% Formatting the list entries
 \newcommand*\l@myalgorithm{\@dottedtocline{1}{1.5em}{2.3em}}
 \makeatother
 
-
 % ========== CHAPTER/SECTION FORMATTING ==========
 \newcommand{\chapterheading}[2]{%
-  \thispagestyle{plain}
-  \vspace*{2.8cm}
+  \thispagestyle{plain}%
+  \vspace*{2.8cm}%
   \begin{center}
     \ifthenelse{\isempty{#1}}{}{%
-        {\Large\bfseries #1}\\
-        \vspace{0.5em}
-    }
-    \rule{\textwidth}{0.4pt}\\
-    \vspace{1.2em}
-    {\normalfont\Huge\bfseries #2}\\
-    \vspace{0.2em}
-    \rule{\textwidth}{0.4pt}
+      {\Large\bfseries #1}\\[0.5em]%
+    }%
+    \rule{\textwidth}{0.4pt}\\[1.2em]%
+    {\normalfont\Huge\bfseries #2}\\[0.2em]%
+    \rule{\textwidth}{0.4pt}%
   \end{center}
 }
 
@@ -173,14 +164,14 @@
   {-2.5cm}
   {\chapterheading{\chaptername~\thechapter}}
 
-\titleformat{\section}
-  {\normalfont\Large}{\thesection}{1em}{}
+% Ensure chapter marks show localized label
+\renewcommand{\chaptermark}[1]{%
+  \markboth{\chaptername~\thechapter\quad#1}{}%
+}
 
-\titleformat{\subsection}
-  {\normalfont\large}{\thesubsection}{1em}{}
-
-\titleformat{\subsubsection}
-  {\normalfont\normalsize}{\thesubsubsection}{1em}{}
+\titleformat{\section}{\normalfont\Large}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize}{\thesubsubsection}{1em}{}
 
 % ========== TABLE OF CONTENTS ==========
 \newcommand{\customtableofcontents}{%
@@ -216,72 +207,36 @@
   \listoftables
 }
 
-
 \newcommand{\customlistofalgorithms}{%
   \cleardoublepage
   \chapterheading{}{\listalgorithmname}%
   \renewcommand{\listalgorithmname}{}%
+  \vspace{1.5cm}
   \listofmyalgorithms
 }
 
+\makeatletter
 \newcommand{\customlistofimages}{%
-  \cleardoublepage
-  \chapterheading{}{\listimagename}
-  \begingroup
-    \let\chapter\section
+    \cleardoublepage
+    \chapterheading{}{\listimagename}
     \renewcommand{\listimagename}{}%
-    \listof{image}{\listimagename}
-  \endgroup
+    \vspace{1.5cm}
+    \listofmyimages
 }
+\makeatother
 
 
-\newcommand{\customlistofacronyms}{%
-  \cleardoublepage
-  \phantomsection
-  \chapterheading{}{\acronymname}%
-  % \addcontentsline{toc}{chapter}{\acronymname}%
-  % \setglossarystyle{nopages}%
-  \glsaddall%
-  \begingroup
-    \def\glossarysection[##1]##2{}%
-    \printglossary[type=\acronymtype, title={}]%
-  \endgroup
-}
-
-% ========== BIBLIOGRAPHY ==========
-\newcommand{\custombibliography}{%
-  \begingroup
-    \let\origclearpage\clearpage
-    \let\clearpage\relax
-    \let\cleardoublepage\relax
-    \phantomsection
-    \addcontentsline{toc}{chapter}{\bibname}
-    \newpage
-    \chapterheading{}{\bibname}
-    \vspace{-3cm}
-    \titleformat{\chapter}[display]{\normalfont\Huge}{}{0pt}{}
-    \renewcommand{\bibname}{}
-
-    \begin{otherlanguage*}{english}
-      \bibliographystyle{IEEEtran}
-      \bibliography{IEEEabrv,references} 
-    \end{otherlanguage*}
-    \let\clearpage\origclearpage
-  \endgroup
-  \markboth{\bibname}{}
-}
-
-
+% ========== BIBLIOGRAPHY (biblatex) ==========
+\RequirePackage[backend=biber,style=ieee,sorting=nyt,doi=true,url=true]{biblatex}
 
 % ========== APPENDIX ==========
 \newcommand{\appendixchapter}[1]{%
-  \cleardoublepage % Ensures it starts on a new page (right-hand side in double-sided)
+  \cleardoublepage
   \refstepcounter{chapter}
   \renewcommand{\thechapter}{\Alph{chapter}}%
   \chapterheading{\appendixname~\thechapter}{#1}%
   \addcontentsline{toc}{chapter}{\appendixname~\thechapter: #1}%
 }
-
 
 % ========== THEOREMS ==========
 \newtheorem{theorem}{\theoremname}[chapter]
@@ -292,14 +247,7 @@
 \newtheorem{example}{\examplename}[chapter]
 \newtheorem{remark}{\remarkname}[chapter]
 
-
 % ========== HYPERREF ==========
-\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    urlcolor=black,
-    citecolor=black,
-    pdfborder={0 0 0}
-}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black,pdfborder={0 0 0}}
 
 \endinput

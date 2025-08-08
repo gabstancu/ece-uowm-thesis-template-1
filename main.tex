@@ -1,10 +1,14 @@
 \documentclass{uowmthesis}
-\usepackage{settings}
+\addbibresource{references.bib}
+
+\setmainlanguage{greek}
+\setotherlanguage{english}
+
+\addbibresource{references.bib}
 
 \begin{document}
 
-
-% ========== keep you preffered covers ==========
+% ========== keep your preferred covers ==========
 \include{covers/cover1/gr}
 \include{covers/cover1/en}
 
@@ -30,13 +34,17 @@
 \include{acknowledgements}
 
 
-\selectlanguage{greek} % define main document language
-
+\selectlanguage{greek} % set main language again
 
 \customlistoftables
 \customlistoffigures
 \customlistofimages
 \customlistofalgorithms
+
+% ======= include acronyms before contents =======
+% \chapterheading{}{\acronymname}
+% \input{doc/acronyms}
+
 \customtableofcontents
 
 
@@ -51,17 +59,20 @@
 \input{doc/chapter2/part2}
 
 
+% ============ appendices ============
 \appendix
+% ======= include acronyms in appendices =======
+\appendixchapter{\acronymname}
+\input{doc/acronyms}
+
 \appendixchapter{Κώδικας}
 \input{doc/appendices/code}
 
 
-% ============= list of acronyms ==========
-\input{doc/acronyms}
-\customlistofacronyms
-
-
-
-\custombibliography
+% =========== bibliography ===========
+\clearpage % remove if not needed
+\chapterheading{}{\bibname}
+\selectlanguage{english}
+\printbibliography[heading=none]
 
 \end{document}
