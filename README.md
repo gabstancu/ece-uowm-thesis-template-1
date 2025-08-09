@@ -14,7 +14,7 @@ This is a **LaTeX thesis template** for the **Department of Electrical and Compu
 - Custom acronyms list with internal links
 - Appendix support  
 - IEEE-style bibliography (`biblatex` + `biber`)  
-- Ready-made structure with `doc/` folder for chapters, appendices, figures, images etc
+- Ready-made structure with `doc/` folder for chapters, appendices, figures, images, etc.
 
 ---
 
@@ -84,3 +84,31 @@ references.bib      → Bibliography entries
     \acitem{AI}{Artificial Intelligence}
 \end{description}
 ```
+
+### Customising Settings
+The `settings.sty` file contains many customisation options for language shortcuts, TikZ styles, and code appearance.
+
+Example — changing code appearance (uses `minted`):
+
+```latex
+\newenvironment{codeblock}[1]{%
+  \selectlanguage{english}
+  \minted[
+    fontsize=\small,
+    linenos=true,
+    breaklines,
+    frame=single,
+    framerule=0.05pt,
+    framesep=4mm,
+    bgcolor=white!5,
+    tabsize=2
+  ]{#1}%
+}{\endminted}
+```
+
+Modify these parameters to adjust font size, line numbering, frame, background color, etc.
+
+### Licence
+
+This template is released under the **Eclipse Public License 2.0**.
+See the `LICENSE` file for more details.
